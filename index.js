@@ -65,6 +65,7 @@ async function test1(driver) {
 
 async function test2(driver) {
   await getElement(`document.querySelectorAll('test-element')`, driver)
+  console.log('test 2: success')
 }
 
 const seleniumServer = process.env.REMOTE_SERVER;
