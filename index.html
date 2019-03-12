@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+    <title>Test Shadow Root</title>
+  </head>
+  <body>
+    <test-element></test-element>
+    <script>
+      class TestElement extends HTMLElement {
+        constructor() {
+          super();
+          const shadowRoot = this.attachShadow({ mode: "open" });
+          this.clickedTimes = 0;
+          shadowRoot.innerHTML = `
+                    <p class="title">Custom element ready!</p>
+                    <button id="btn">Click me!</button>
+                    <div>clicked times: <span id="output">${
+                      this.clickedTimes
+                    }</span></div>
+                `;
+          this.shadowRoot
+            .querySelector("#btn")
+            .addEventListener("click", () => {
+              this.clickedTimes++;
+              this.shadowRoot.querySelector(
+                "#output"
+              ).textContent = this.clickedTimes;
+            });
+        }
+      }
+      if (!customElements) {
+        window.addEventListener("WebComponentsReady", () => {
+          customElements.define("test-element", TestElement);
+        });
+      } else {
+        customElements.define("test-element", TestElement);
+      }
+    </script>
+  </body>
+</html>
