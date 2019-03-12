@@ -3,6 +3,8 @@
 This script will host a simple web server on the machine that this is executed on.
 You can optionally provide a browser (chrome/safari/firefox configured by default)
 
+`npm install` alternatively examine index.js
+
 ##To execute the test run with defaults (chrome)
 
 `npm start`
