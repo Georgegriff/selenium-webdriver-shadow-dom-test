@@ -63,6 +63,10 @@ async function test1(driver) {
     console.log('test 1: success')
 }
 
+async function test2(driver) {
+  await getElement(`document.querySelectorAll('test-element')`, driver)
+}
+
 const seleniumServer = process.env.REMOTE_SERVER;
 let driver;
 (async function example() {
@@ -81,6 +85,7 @@ let driver;
     await driver.wait(until.titleIs("Test Shadow Root"), 1000);
 
     await test1(driver);
+    await test2(driver);
 
     await driver.sleep(2000);
   }
